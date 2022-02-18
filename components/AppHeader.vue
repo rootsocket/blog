@@ -39,43 +39,25 @@
             'justify-end': !lastRelease || settings.layout === 'single',
           }"
         >
-          <NuxtLink
-            v-if="lastRelease"
-            :to="localePath('/releases')"
+          <a
+            href="https://rootsocket.com"
             class="font-semibold leading-none text-gray-700 dark:text-gray-300 hover:text-primary-500 dark-hover:text-primary-500 text-base mr-4"
             exact-active-class="text-primary-500"
-            >{{ lastRelease.name }}</NuxtLink
+            :class="{
+              'hidden lg:block': settings.layout !== 'single',
+            }"
+            >Home</a
+          >
+          <a
+            href="https://docs.rootsocket.com"
+            class="font-semibold leading-none text-gray-700 dark:text-gray-300 hover:text-primary-500 dark-hover:text-primary-500 text-base mr-4"
+            exact-active-class="text-primary-500"
+            :class="{
+              'hidden lg:block': settings.layout !== 'single',
+            }"
+            >Docs</a
           >
           <div class="flex items-center">
-            <a
-              v-if="settings.twitter"
-              :href="`https://twitter.com/${settings.twitter}`"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="Twitter"
-              name="Twitter"
-              class="text-gray-700 dark:text-gray-300 hover:text-primary-500 dark-hover:text-primary-500 ml-4"
-              :class="{
-                'hidden lg:block': settings.layout !== 'single',
-              }"
-            >
-              <IconTwitter class="w-5 h-5" />
-            </a>
-            <a
-              v-if="settings.github"
-              :href="githubUrls.repo"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="Github"
-              name="Github"
-              class="text-gray-700 dark:text-gray-300 hover:text-primary-500 dark-hover:text-primary-500 ml-4"
-              :class="{
-                'hidden lg:block': settings.layout !== 'single',
-              }"
-            >
-              <IconGithub class="w-5 h-5" />
-            </a>
-
             <button
               v-if="settings.layout !== 'single'"
               class="lg:hidden p-2 rounded-md text-gray-700 dark:text-gray-300 focus:outline-none -mr-2"
