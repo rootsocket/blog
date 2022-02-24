@@ -13,7 +13,7 @@
             :aria-label="`${settings.title} Logo`"
           >
             <img
-              src="~static/logo.png"
+              src="logo.png"
               class="h-6 max-w-full rounded-full"
               :alt="settings.title"
             />
