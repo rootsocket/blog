@@ -4,6 +4,9 @@ export default theme({
   docs: {
     primaryColor: "#0073e6",
   },
+  router: {
+    base: '/blog',
+  },
   head: {
     link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
   },
