@@ -1,0 +1,65 @@
+name: ci
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node: [14]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+
+      - name: Setup node env
+        uses: actions/setup-node@v2.1.5
+        with:
+          node-version: ${{ matrix.node }}
+          check-latest: true
+
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+
+      - name: Cache node_modules
+        uses: actions/cache@v2.1.4
+        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: Install dependencies
+        run: yarn
+
+      - name: Generate dist
+        run: yarn generate
+
+      - name: Set git values
+        run: |
+          echo "LAST_COMMIT_MESSAGE=$(git log -1 --pretty=%B)" >> $GITHUB_ENV
+
+      - name: Checkout deployment project
+        uses: actions/checkout@master
+        with: 
+          repository: rootsocket/rootsocket.pages
+          token: ${{ secrets.TOKEN_DEPLOYMENT }}
+          path: ./rootsocket.pages
+
+      - name: Copy files
+        working-directory: ./rootsocket.pages
+        run: |
+          cp -R ../dist/ ./docs
+          git add .
+          git config user.name github-actions
+          git config user.email contact@rootsocket.com
+          git commit -m "${{ env.LAST_COMMIT_MESSAGE }}"
+          git push
