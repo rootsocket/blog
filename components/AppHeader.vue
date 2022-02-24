@@ -13,7 +13,7 @@
             :aria-label="`${settings.title} Logo`"
           >
             <img
-              src="logo.png"
+              src="~static/logo.png"
               class="h-6 max-w-full rounded-full"
               :alt="settings.title"
             />
@@ -91,18 +91,6 @@ export default {
       set(val) {
         this.$store.commit("menu/toggle", val);
       },
-    },
-    logo() {
-      if (!this.settings.logo) {
-        return;
-      }
-      if (typeof this.settings.logo === "object") {
-        return this.settings.logo;
-      }
-      return {
-        light: this.settings.logo,
-        dark: this.settings.logo,
-      };
     },
   },
   beforeMount() {
