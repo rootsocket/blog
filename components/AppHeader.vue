@@ -46,16 +46,16 @@
             :class="{
               'hidden lg:block': settings.layout !== 'single',
             }"
-            >Home</a
+            >{{ $t('home') }}</a
           >
           <a
-            href="https://rootsocket.com/docs"
+            href="https://rootsocket.com/blog"
             class="font-semibold leading-none text-gray-700 dark:text-gray-300 hover:text-primary-500 dark-hover:text-primary-500 text-base mr-4"
             exact-active-class="text-primary-500"
             :class="{
               'hidden lg:block': settings.layout !== 'single',
             }"
-            >Docs</a
+            >{{ $t('docs') }}</a
           >
           <div class="flex items-center">
             <button
@@ -113,3 +113,16 @@ export default {
   },
 };
 </script>
+
+<i18n>
+{
+  "es": {
+    "docs": "Docs",
+    "home": "Inicio"
+  },
+  "en": {
+    "docs": "Docs",
+    "home": "Home"
+  }
+}
+</i18n>

@@ -6,11 +6,11 @@
       rel="noopener"
       class="text-gray-600 dark:text-gray-400 text-sm font-medium hover:underline flex items-center"
     >
-      {{ $t('article.github') }}
+      {{ $t('articleGithub') }}
       <IconExternalLink class="w-4 h-4 ml-1" />
     </a>
     <span class="text-gray-600 dark:text-gray-400 text-sm font-medium flex items-center">
-      {{ $t("article.updatedAt") }} {{ $d(Date.parse(document.updatedAt), "long") }}
+      {{ $t("articleUpdatedAt") }} {{ new Date(document.updatedAt).toLocaleDateString($i18n.locale, {day: 'numeric', month: 'long', year: 'numeric'}) }}
     </span>
   </div>
 </template>
@@ -43,3 +43,16 @@ export default {
   }
 }
 </script>
+
+<i18n>
+{
+  "es": {
+    "articleGithub": "Edita esta página en GitHub",
+    "articleUpdatedAt": "Actualizado el"
+  },
+  "en": {
+    "articleGithub": "Edit this page on GitHub",
+    "articleUpdatedAt": "Updated at"
+  }
+}
+</i18n>

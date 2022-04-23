@@ -51,20 +51,20 @@
           <p
             class="mb-2 text-gray-500 uppercase tracking-wider font-bold text-sm lg:text-xs"
           >
-            More
+            {{ $t('more') }}
           </p>
           <div class="flex items-center space-x-4">
             <a
               href="https://rootsocket.com"
               class="font-semibold leading-none text-gray-700 dark:text-gray-300 hover:text-primary-500 dark-hover:text-primary-500 text-base"
               exact-active-class="text-primary-500"
-              >Home</a
+              >{{ $t('home') }}</a
             >
             <a
-              href="https://rootsocket.com/docs"
+              href="https://rootsocket.com/blog"
               class="font-semibold leading-none text-gray-700 dark:text-gray-300 hover:text-primary-500 dark-hover:text-primary-500 text-base"
               exact-active-class="text-primary-500"
-              >Docs</a
+              >{{ $t('docs') }}</a
             >
           </div>
         </li>
@@ -110,3 +110,18 @@ export default {
   },
 };
 </script>
+
+<i18n>
+{
+  "es": {
+    "docs": "Docs",
+    "home": "Inicio",
+    "more": "Más"
+  },
+  "en": {
+    "docs": "Docs",
+    "home": "Home",
+    "more": "More"
+  }
+}
+</i18n>
