@@ -2,7 +2,7 @@ import theme from "@nuxt/content-theme-docs";
 
 export default theme({
   docs: {
-    primaryColor: "#0073e6",
+    primaryColor: "#007fff",
   },
   router: {
     base: '/blog',
